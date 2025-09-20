@@ -12,6 +12,9 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y zsh kitty fish
 
+dnf5 -y copr enable scottames/ghostty
+dnf5 -y install ghostty
+dnf5 -y copr disable scottames/ghostty
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
