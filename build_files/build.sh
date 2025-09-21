@@ -27,3 +27,5 @@ dnf5 -y copr disable scottames/ghostty
 systemctl enable podman.socket
 
 echo "import \"/usr/local/share/g.just\"" >>/usr/share/ublue-os/justfile
+
+systemctl disable cups
