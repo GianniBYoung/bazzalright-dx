@@ -1,43 +1,40 @@
-brew "duf"
-brew "epubcheck"
-brew "kepubify"
-brew "spicetify-cli"
-brew "superfile"
-tap "knqyf263/pet"
-brew "bat"
-brew "moar"
-brew "chezmoi"
-brew "eza"
-brew "fd"
-brew "fzf"
-brew "glow"
-brew "httpie"
-brew "lazygit"
-brew "luajit"
-brew "lua-language-server"
-brew "moar"
-brew "neovim"
-brew "node"
-brew "ranger"
-brew "ripgrep"
-brew "skopeo"
-brew "socat"
-brew "tealdeer"
-brew "yazi"
-brew "yq"
-brew "jq"
-brew "zoxide"
-brew "delve"
-brew "golangci-lint"
-brew "yamllint"
-brew "jsonlint"
-brew "stylua"
-brew "go"
-brew "gopls"
-brew "golines"
-brew "gofumpt"
-brew "tflint"
-brew "terraform-ls"
-brew "ansible-lint"
-brew "ansible-language-server"
-brew "bash-language-server"
+duf
+epubcheck
+kepubify
+spicetify-cli
+superfile
+bat
+moar
+chezmoi
+eza
+fd
+fzf
+glow
+httpie
+lazygit
+luajit
+lua-language-server
+moar
+neovim
+node
+ranger
+ripgrep
+skopeo
+socat
+tealdeer
+yazi
+yq
+jq
+zoxide
+delve
+golangci-lint
+yamllint
+jsonlint
+stylua
+go
+gopls
+golines
+gofumpt
+ansible-lint
+ansible-language-server
+bash-language-server
