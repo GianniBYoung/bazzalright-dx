@@ -4,7 +4,7 @@ kepubify
 spicetify-cli
 superfile
 bat
-moar
+moor
 chezmoi
 eza
 fd
@@ -14,7 +14,6 @@ httpie
 lazygit
 luajit
 lua-language-server
-moar
 neovim
 node
 ranger
