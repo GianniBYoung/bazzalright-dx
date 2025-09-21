@@ -18,8 +18,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/build.sh && \
     ostree container commit
 
-RUN brew bundle --file=/tmp/Brewfile
-
     
 ### LINTING
 ## Verify final image and contents are correct.
