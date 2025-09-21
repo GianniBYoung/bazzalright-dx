@@ -12,7 +12,7 @@ g-install-flatpaks:
     set -euo pipefail
 
     echo "Installing Flatpaks..."
-    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/GianniBYoung/bazzalright-dx/refs/heads/main/build_files/flatpak.list ) flatpak --system -y install
+    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/GianniBYoung/bazzalright-dx/refs/heads/main/build_files/flatpaks.list ) flatpak --system -y install
     echo "Flatpaks installation complete."
 
 g-chezmoi:
