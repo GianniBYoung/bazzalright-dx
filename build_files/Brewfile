@@ -37,3 +37,4 @@ gofumpt
 ansible-lint
 ansible-language-server
 bash-language-server
+charmbracelet/tap/crush
