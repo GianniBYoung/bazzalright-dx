@@ -28,4 +28,4 @@ systemctl enable podman.socket
 
 echo "import \"/usr/local/share/g.just\"" >>/usr/share/ublue-os/justfile
 
-systemctl disable cups pcscd
+systemctl disable cups pcscd docker.socket
