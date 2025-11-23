@@ -1,6 +1,4 @@
 duf
-epubcheck
-kepubify
 spicetify-cli
 superfile
 bat
@@ -38,3 +36,7 @@ ansible-lint
 ansible-language-server
 bash-language-server
 charmbracelet/tap/crush
+shellcheck
+rumdl
+yamlfmt
+git-absorp
