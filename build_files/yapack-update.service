@@ -1,0 +1,13 @@
+[Unit]
+Description=Update Yazi plugins
+After=local-fs.target
+After=network.target
+ConditionFileIsExecutable=/home/linuxbrew/.linuxbrew/bin/yazi
+ConditionFileIsExecutable=/home/linuxbrew/.linuxbrew/bin/ya
+
+[Service]
+Type=simple
+ExecStart=/home/linuxbrew/.linuxbrew/bin/ya pkg upgrade
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Auto update yazi plugins daily
+Wants=network-online.target
+
+[Timer]
+OnBootSec=10min
+OnUnitInactiveSec=15h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
