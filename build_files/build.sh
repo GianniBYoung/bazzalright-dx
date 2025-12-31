@@ -21,8 +21,8 @@ dnf5 -y copr disable scottames/ghostty
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+systemctl enable podman.socket brew-upgrade brew-update podman-auto-update
 
 echo 'import "/usr/local/share/g.just"' >>/usr/share/ublue-os/justfile
 
-systemctl disable cups pcscd docker.socket
+systemctl disable cups pcscd docker.socket raid-check smartd
