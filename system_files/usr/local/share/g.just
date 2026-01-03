@@ -14,10 +14,15 @@ g-install-flatpaks:
     xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/GianniBYoung/bazzalright-dx/refs/heads/main/build_files/flatpaks.list ) flatpak --system -y install
     echo "Flatpaks installation complete."
 
-g-chezmoi:
+g-init:
     #!/usr/bin/env bash
+    export SSH_AUTH_SOCK=/home/gianni/.bitwarden-ssh-agent.sock
+    export SSH_AUTH_SOCK=/home/gianni/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
     brew install chezmoi
     chezmoi init git@github.com:GianniBYoung/frenchfiles.git
+    chezmoi apply
+    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
+    
 
 yazi-auto-update:
     #!/usr/bin/env bash
