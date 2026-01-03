@@ -25,6 +25,7 @@ g-init:
     
 g-post:
   sudo systemctl enable --now tailscaled.service
+  tailscale configure systray --enable-startup=systemd
   ujust toggle-user-motd
   ujust yazi-auto-update
 
