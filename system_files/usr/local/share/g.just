@@ -29,7 +29,7 @@ g-post:
   ujust toggle-user-motd
   ujust yazi-auto-update
   rm -rf ~/{Music,Templates,Videos}
-  mkdir ~/pg
+  mkdir ~/pg || echo 'playground already exists'
 
 yazi-auto-update:
     #!/usr/bin/env bash
