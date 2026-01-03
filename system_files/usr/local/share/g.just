@@ -28,6 +28,8 @@ g-post:
   tailscale configure systray --enable-startup=systemd
   ujust toggle-user-motd
   ujust yazi-auto-update
+  rm -rf ~/{Music,Templates,Videos}
+  mkdir ~/pg
 
 yazi-auto-update:
     #!/usr/bin/env bash
