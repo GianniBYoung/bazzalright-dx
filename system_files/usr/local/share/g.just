@@ -21,15 +21,16 @@ g-init:
     brew install chezmoi
     chezmoi init git@github.com:GianniBYoung/frenchfiles.git
     chezmoi apply
-    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
-    
+    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
+
 g-post:
-  sudo systemctl enable --now tailscaled.service
-  tailscale configure systray --enable-startup=systemd
-  ujust toggle-user-motd
-  ujust yazi-auto-update
-  rm -rf ~/{Music,Templates,Videos}
-  mkdir ~/pg || echo 'playground already exists'
+    sudo systemctl enable --now tailscaled.service
+    sudo tailscale set --operator=$USER
+    tailscale configure systray --enable-startup=systemd
+    ujust toggle-user-motd
+    ujust yazi-auto-update
+    rm -rf ~/{Music,Templates,Videos}
+    mkdir ~/pg || echo 'playground already exists'
 
 yazi-auto-update:
     #!/usr/bin/env bash
