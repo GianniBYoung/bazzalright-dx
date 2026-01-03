@@ -23,6 +23,10 @@ g-init:
     chezmoi apply
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
     
+g-post:
+  sudo systemctl enable --now tailscaled.service
+  ujust toggle-user-motd
+  ujust yazi-auto-update
 
 yazi-auto-update:
     #!/usr/bin/env bash
