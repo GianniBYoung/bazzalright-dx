@@ -2,6 +2,8 @@
 FROM scratch AS ctx
 COPY build_files /
 
+FROM ghcr.io/projectbluefin/common:latest AS common
+
 # Base Image
 FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 
@@ -10,6 +12,7 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 COPY system_files /
+COPY --from=common /just/apps.just /usr/share/ublue-os/just/
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
@@ -18,7 +21,5 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/build.sh && \
     ostree container commit
 
-
-### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
