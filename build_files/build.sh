@@ -23,6 +23,6 @@ dnf5 -y copr disable scottames/ghostty
 
 systemctl enable podman.socket brew-upgrade brew-update podman-auto-update
 
-echo 'import "/usr/local/share/g.just"' >>/usr/share/ublue-os/justfile
-
 systemctl disable cups pcscd docker.socket raid-check smartd
+
+mkdir -p /usr/share/ublue-os/additional-justs
