@@ -12,13 +12,18 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 COPY system_files /
-COPY --from=common /just/apps.just /usr/share/ublue-os/just/
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh && \
+    ostree container commit
+
+COPY --from=common /system_files/shared/usr/share/ublue-os/just/apps.just /usr/share/ublue-os/additional-justs
+COPY --from=common /system_files/shared/usr/share/ublue-os/homebrew /usr/share/ublue-os/homebrew
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    /ctx/additional-justs.sh && \
     ostree container commit
 
 ## Verify final image and contents are correct.
