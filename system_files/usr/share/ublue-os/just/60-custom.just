@@ -26,6 +26,7 @@ yazi-auto-update:
 
 # Setup Incus permissions and initialization
 setup-incus:
+    USER := $(whoami)
     sudo usermod -aG incus-admin {{USER}}
     sudo systemctl enable --now incus.socket
     @echo "Please log out and back in for group changes to take effect, then run 'incus admin init'"
