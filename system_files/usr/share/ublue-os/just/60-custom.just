@@ -29,4 +29,9 @@ setup-incus:
     #!/usr/bin/env bash
     sudo usermod -aG incus-admin $USER
     sudo systemctl enable --now incus.socket
+    # Add ranges for your user
+    sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
+
+    # Add ranges for the incus group/user
+    sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 root
     @echo "Please log out and back in for group changes to take effect, then run 'incus admin init'"
