@@ -9,6 +9,14 @@ set -ouex pipefail
 
 dnf5 install -y zsh kitty fish
 
+# Add Incus Repo
+dnf5 -y copr enable ganto/lxc4
+dnf5 -y install incus
+dnf5 -y copr disable ganto/lxc4
+
+systemctl enable incus.socket
+
+# Enable the socket for on-demand start
 dnf5 -y copr enable scottames/ghostty
 dnf5 -y install ghostty
 dnf5 -y copr disable scottames/ghostty

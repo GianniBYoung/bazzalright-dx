@@ -23,3 +23,9 @@ yazi-auto-update:
     wget https://raw.githubusercontent.com/GianniBYoung/bazzalright-dx/main/build_files/yapack-update.timer -O ~/.config/systemd/user/yapack-update.timer
     systemctl --user daemon-reload
     systemctl --user enable yapack-update.timer
+
+# Setup Incus permissions and initialization
+setup-incus:
+    sudo usermod -aG incus-admin {{USER}}
+    sudo systemctl enable --now incus.socket
+    @echo "Please log out and back in for group changes to take effect, then run 'incus admin init'"
