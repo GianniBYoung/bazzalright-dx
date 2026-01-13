@@ -21,7 +21,7 @@ dnf5 -y copr disable scottames/ghostty
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket brew-upgrade brew-update podman-auto-update
+systemctl enable podman.socket podman-auto-update.timer
 
 systemctl disable cups pcscd docker.socket raid-check smartd
 
