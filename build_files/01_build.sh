@@ -13,6 +13,7 @@ dnf5 install -y zsh kitty fish
 dnf5 -y copr enable ganto/lxc4
 dnf5 -y install incus
 dnf5 -y copr disable ganto/lxc4
+dnf5 -y install virt-viewer
 
 systemctl enable incus.socket
 
