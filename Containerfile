@@ -5,7 +5,7 @@ COPY build_files /
 FROM ghcr.io/projectbluefin/common:latest AS common
 
 # Base Image
-FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
+FROM ghcr.io/ublue-os/bazzite-gnome:latest
 
 COPY system_files /
 
