@@ -39,6 +39,8 @@ brew "rumdl"
 brew "yamlfmt"
 brew "git-absorb"
 brew "Valkyrie00/homebrew-bbrew/bbrew"
+brew "rust"
+brew "rust-analyzer"
 
 flatpak "app.zen_browser.zen"
 flatpak "io.gitlab.adhami3310.Impression"
