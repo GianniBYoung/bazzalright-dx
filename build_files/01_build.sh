@@ -7,7 +7,7 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-dnf5 install -y zsh kitty fish
+dnf5 install -y zsh kitty fish vicinae
 
 # Add Incus Repo
 dnf5 -y copr enable ganto/lxc4
