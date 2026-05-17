@@ -7,7 +7,6 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-dnf config-manager addrepo --from-repofile=https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
 dnf5 install -y --refresh zsh kitty fish vicinae
 
 # Add Incus Repo
@@ -33,6 +32,6 @@ dnf5 -y copr disable scottames/ghostty
 
 systemctl enable podman.socket podman-auto-update.timer
 
-systemctl disable cups pcscd docker.socket raid-check smartd
+systemctl disable cups pcscd raid-check smartd
 
 mkdir -p /usr/share/ublue-os/additional-justs
