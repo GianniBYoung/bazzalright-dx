@@ -16,7 +16,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/01_build.sh && \
     ostree container commit
 
-COPY --from=common /system_files/shared/usr/share/ublue-os/just/apps.just /usr/share/ublue-os/additional-justs
+# COPY --from=common /system_files/shared/usr/share/ublue-os/just/apps.just /usr/share/ublue-os/additional-justs
 COPY --from=common /system_files/shared/usr/share/ublue-os/homebrew /usr/share/ublue-os/homebrew
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/02_additional-justs.sh && \
