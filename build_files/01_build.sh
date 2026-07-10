@@ -37,3 +37,14 @@ systemctl enable podman.socket podman-auto-update.timer
 systemctl disable cups pcscd raid-check smartd
 
 mkdir -p /usr/share/ublue-os/additional-justs
+
+# Install Handy and its dependencies
+dnf5 -y install gtk-layer-shell
+
+# Dynamically fetch the .rpm matching the build architecture (ignoring .sig files)
+ARCH=$(uname -m)
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cjpais/handy/releases/latest | grep -E "browser_download_url.*${ARCH}\.rpm\"" | cut -d '"' -f 4)
+
+curl -Lo /tmp/handy.rpm "$DOWNLOAD_URL"
+dnf5 -y install /tmp/handy.rpm
+rm -f /tmp/handy.rpm

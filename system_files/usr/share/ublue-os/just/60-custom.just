@@ -35,3 +35,28 @@ setup-incus:
     # Add ranges for the incus group/user
     sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 root
     @echo "Please log out and back in for group changes to take effect, then run 'incus admin init'"
+
+# Create and enable the ydotool user service for Handy speech-to-text
+setup-ydotool:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "Creating systemd user unit for ydotool..."
+    mkdir -p ~/.config/systemd/user
+    cat << 'EOF' > ~/.config/systemd/user/ydotool.service
+    [Unit]
+    Description=ydotool virtual input daemon for Handy
+    After=default.target
+
+    [Service]
+    Type=simple
+    ExecStart=/usr/bin/ydotoold
+    Restart=always
+    RestartSec=3
+
+    [Install]
+    WantedBy=default.target
+    EOF
+    echo "Reloading systemd daemon and starting service..."
+    systemctl --user daemon-reload
+    systemctl --user enable --now ydotool.service
+    echo "Done! ydotoold is now running and set to autostart on login."
