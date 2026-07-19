@@ -48,3 +48,9 @@ DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cjpais/handy/releases/latest
 curl -Lo /tmp/handy.rpm "$DOWNLOAD_URL"
 dnf5 -y install /tmp/handy.rpm
 rm -f /tmp/handy.rpm
+
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/AprilNEA/OpenLogi/releases/latest| grep -E "browser_download_url.*amd64\.rpm\"" | cut -d '"' -f 4)
+
+curl -Lo /tmp/openlogi.rpm "$DOWNLOAD_URL"
+dnf5 -y --setopt=tsflags=noscripts install /tmp/openlogi.rpm
+rm -f /tmp/openlogi.rpm
