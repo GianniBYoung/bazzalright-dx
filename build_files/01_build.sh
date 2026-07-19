@@ -8,7 +8,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/terra.repo
-dnf5 install -y --refresh zsh kitty fish vicinae
+dnf5 install -y --refresh  vicinae
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/terra.repo
 
 # Add Incus Repo
