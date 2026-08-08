@@ -20,9 +20,9 @@ dnf5 -y install virt-viewer
 systemctl enable incus.socket
 
 # Enable the socket for on-demand start
-dnf5 -y copr enable scottames/ghostty
-dnf5 -y install ghostty
-dnf5 -y copr disable scottames/ghostty
+# dnf5 -y copr enable scottames/ghostty
+# dnf5 -y install ghostty
+# dnf5 -y copr disable scottames/ghostty
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
