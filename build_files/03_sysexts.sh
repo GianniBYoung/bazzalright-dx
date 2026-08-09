@@ -1,27 +1,28 @@
 #!/bin/bash
 
 # sysext prereqs
-install -d -m 0755 -o 0 -g 0 "/var/lib/extensions" "/var/lib/extensions.d"
-restorecon -RFv "/var/lib/extensions" "/var/lib/extensions.d"
+# install -d -m 0755 -o 0 -g 0 "/var/lib/extensions" "/var/lib/extensions.d"
+# restorecon -RFv "/var/lib/extensions" "/var/lib/extensions.d"
 
-systemctl enable --now systemd-sysext.service
+FCOS_SYSEXT_URL=https://extensions.fcos.fr/fedora
+COMMUNITY_SYSEXT_URL=https://extensions.fcos.fr/community
 
-# ghostty sysext installation
-SYSEXT=ghostty
-FCOS_COMMUNITY_URL=https://extensions.fcos.fr/community
-install -d -m 0755 -o 0 -g 0 "/etc/sysupdate.${SYSEXT}.d"
-restorecon -RFv "/etc/sysupdate.${SYSEXT}.d"
-curl --silent --fail --location "${FCOS_COMMUNITY_URL}/${SYSEXT}.conf" \
-| tee "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
-/usr/lib/systemd/systemd-sysupdate update --component $SYSEXT
+# sysexts-manager
+VERSION="0.3.3"
+VERSION_ID="44" # Fedora release
+ARCH="x86-64"
+URL="https://github.com/travier/sysexts-manager/releases/download/sysexts-manager/"
+NAME="sysexts-manager-${VERSION}-${VERSION_ID}-${ARCH}.raw"
+install -d -m 0755 -o 0 -g 0 "/var/lib/extensions"{,.d} "/run/extensions"
+curl --silent --fail --location "${URL}/${NAME}" \
+    | bash -c "cat > /var/lib/extensions.d/${NAME}"
+ln -snf "/var/lib/extensions.d/${NAME}" "/var/lib/extensions/sysexts-manager.raw"
+restorecon -RFv "/var/lib/extensions"{,.d} "/run/extensions"
+systemctl enable systemd-sysext.service
+systemctl restart systemd-sysext.service
 
-# # Helper function for fedora-coreos community sysext installation
-# install_sysext() {
-#   SYSEXT="${1}"
-#   URL="https://extensions.fcos.fr/community"
-#   sudo install -d -m 0755 -o 0 -g 0 "/etc/sysupdate.${SYSEXT}.d"
-#   sudo restorecon -RFv "/etc/sysupdate.${SYSEXT}.d"
-#   curl --silent --fail --location "${URL}/${SYSEXT}.conf" \
-#     | sudo tee "/etc/sysupdate.${SYSEXT}.d/${SYSEXT}.conf"
-#   sudo /usr/lib/systemd/systemd-sysupdate update --component "${SYSEXT}"
-# }
+sysexts-manager add ghostty $COMMUNITY_SYSEXT_URL
+sysexts-manager add nvim $FCOS_SYSEXT_URL
+
+sysexts-manager enable ghostty
+sysexts-manager enable nvim
