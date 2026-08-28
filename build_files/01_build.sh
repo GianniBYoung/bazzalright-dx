@@ -15,7 +15,7 @@ sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/terra.repo
 dnf5 -y copr enable ganto/lxc4
 dnf5 -y install incus
 dnf5 -y copr disable ganto/lxc4
-dnf5 -y install virt-viewer
+dnf5 -y install virt-viewer erofs-utils
 
 systemctl enable incus.socket
 
@@ -24,13 +24,6 @@ systemctl enable incus.socket
 # dnf5 -y install ghostty
 # dnf5 -y copr disable scottames/ghostty
 # Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
-
-#### Example for enabling a System Unit File
 
 systemctl enable podman.socket podman-auto-update.timer
 
