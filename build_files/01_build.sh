@@ -35,12 +35,12 @@ mkdir -p /usr/share/ublue-os/additional-justs
 dnf5 -y install gtk-layer-shell
 
 # Dynamically fetch the .rpm matching the build architecture (ignoring .sig files)
-ARCH=$(uname -m)
-DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cjpais/handy/releases/latest | grep -E "browser_download_url.*${ARCH}\.rpm\"" | cut -d '"' -f 4)
+# ARCH=$(uname -m)
+# DOWNLOAD_URL=$(curl -s https://api.github.com/repos/cjpais/handy/releases/latest | grep -E "browser_download_url.*${ARCH}\.rpm\"" | cut -d '"' -f 4)
 
-curl -Lo /tmp/handy.rpm "$DOWNLOAD_URL"
-dnf5 -y install /tmp/handy.rpm
-rm -f /tmp/handy.rpm
+# curl -Lo /tmp/handy.rpm "$DOWNLOAD_URL"
+# dnf5 -y install /tmp/handy.rpm
+# rm -f /tmp/handy.rpm
 
 DOWNLOAD_URL=$(curl -s https://api.github.com/repos/AprilNEA/OpenLogi/releases/latest| grep -E "browser_download_url.*amd64\.rpm\"" | cut -d '"' -f 4)
 
