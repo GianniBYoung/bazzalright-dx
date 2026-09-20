@@ -23,6 +23,8 @@ systemctl restart systemd-sysext.service
 
 sysexts-manager add ghostty $COMMUNITY_SYSEXT_URL
 sysexts-manager add nvim $FCOS_SYSEXT_URL
+sysexts-manager add nvim $FCOS_SYSEXT_URL
 
 sysexts-manager enable ghostty
 sysexts-manager enable nvim
+sysexts-manager enable incus

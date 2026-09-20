@@ -11,13 +11,12 @@ sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/terra.repo
 dnf5 install -y --refresh  vicinae
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/terra.repo
 
-# Add Incus Repo
-dnf5 -y copr enable ganto/lxc4
-dnf5 -y install incus
-dnf5 -y copr disable ganto/lxc4
+# dnf5 -y copr enable ganto/lxc4
+# dnf5 -y install incus
+# dnf5 -y copr disable ganto/lxc4
 dnf5 -y install virt-viewer erofs-utils
 
-systemctl enable incus.socket
+# systemctl enable incus.socket
 
 # Enable the socket for on-demand start
 # dnf5 -y copr enable scottames/ghostty
