@@ -16,6 +16,12 @@ sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/terra.repo
 # dnf5 -y copr disable ganto/lxc4
 dnf5 -y install virt-viewer erofs-utils
 
+# Claude Desktop (community RPM repackaging of Anthropic's official Linux build)
+curl -fsSL https://pkg.claude-desktop-debian.dev/rpm/claude-desktop-unofficial.repo \
+    -o /etc/yum.repos.d/claude-desktop-unofficial.repo
+dnf5 -y install claude-desktop-unofficial
+rm -f /etc/yum.repos.d/claude-desktop-unofficial.repo
+
 # systemctl enable incus.socket
 
 # Enable the socket for on-demand start
