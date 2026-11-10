@@ -7,11 +7,10 @@
 # @vicinae.argument1 {"type": "text", "placeholder": "recipe", "optional": true}
 # @vicinae.keywords ["just", "recipe", "bazzite"]
 
-# Split the argument into recipe + args, quote each for the inner shell.
+# Split the argument into recipe + args; ghostty -e passes argv straight
+# through, so no shell re-quoting is needed.
 read -ra words <<< "${1:-}"
-cmd="ujust"
-for w in "${words[@]}"; do cmd+=" $(printf '%q' "$w")"; done
 
-ptyxis --new-window -T "${cmd}" \
-    -x "bash -c $(printf '%q' "${cmd}; echo; read -rp 'Press Enter to close.'")" \
+ghostty --title="ujust ${words[*]}" -e bash -c \
+    'ujust "$@"; echo; read -rp "Press Enter to close."' _ "${words[@]}" \
     >/dev/null 2>&1 &
