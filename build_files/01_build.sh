@@ -7,9 +7,7 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/terra.repo
-dnf5 install -y --refresh  vicinae
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/terra.repo
+dnf5 install -y --refresh --enablerepo=terra vicinae
 
 # dnf5 -y copr enable ganto/lxc4
 # dnf5 -y install incus
