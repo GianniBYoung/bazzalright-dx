@@ -60,3 +60,28 @@ setup-ydotool:
     systemctl --user daemon-reload
     systemctl --user enable --now ydotool.service
     echo "Done! ydotoold is now running and set to autostart on login."
+
+# Re-sync sysexts to the running Fedora release (run after a major version jump)
+sysexts-rebase:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    source /etc/os-release
+    ARCH="$(uname -m | tr _ -)"
+    echo "Host is Fedora ${VERSION_ID} (${ARCH})"
+    URL=$(curl -fsSL https://api.github.com/repos/travier/sysexts-manager/releases/tags/sysexts-manager \
+        | grep -oE "\"browser_download_url\": *\"[^\"]*-${VERSION_ID}-${ARCH}\.raw\"" \
+        | cut -d'"' -f4 | sort -V | tail -1)
+    if [[ -z "${URL}" ]]; then
+        echo "No sysexts-manager build for Fedora ${VERSION_ID} yet" >&2
+        exit 1
+    fi
+    NAME="${URL##*/}"
+    echo "Installing ${NAME}"
+    sudo install -d -m 0755 /var/lib/extensions /var/lib/extensions.d
+    sudo curl -fL -o "/var/lib/extensions.d/${NAME}" "${URL}"
+    sudo ln -snf "/var/lib/extensions.d/${NAME}" /var/lib/extensions/sysexts-manager.raw
+    sudo restorecon -RF /var/lib/extensions /var/lib/extensions.d
+    sudo systemctl restart systemd-sysext.service
+    sudo sysexts-manager update
+    sudo sysexts-manager refresh
+    systemd-sysext status
