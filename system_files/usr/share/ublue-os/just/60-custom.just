@@ -61,6 +61,19 @@ setup-ydotool:
     systemctl --user enable --now ydotool.service
     echo "Done! ydotoold is now running and set to autostart on login."
 
+# Configure and enable personal sysexts (installs sysexts-manager first)
+sysexts-setup:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    ujust sysexts-rebase
+    sudo sysexts-manager add ghostty https://extensions.fcos.fr/community || true
+    sudo sysexts-manager add handy https://extensions.fcos.fr/community || true
+    sudo sysexts-manager add neovim https://extensions.fcos.fr/fedora || true
+    sudo sysexts-manager update
+    sudo sysexts-manager enable
+    sudo sysexts-manager refresh
+    systemd-sysext status
+
 # Re-sync sysexts to the running Fedora release (run after a major version jump)
 sysexts-rebase:
     #!/usr/bin/env bash
