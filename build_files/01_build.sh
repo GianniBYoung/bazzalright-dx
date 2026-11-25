@@ -48,8 +48,9 @@ dnf5 -y install gtk-layer-shell
 # dnf5 -y install /tmp/handy.rpm
 # rm -f /tmp/handy.rpm
 
-DOWNLOAD_URL=$(curl -s https://api.github.com/repos/AprilNEA/OpenLogi/releases/latest| grep -E "browser_download_url.*amd64\.rpm\"" | cut -d '"' -f 4)
+# Resolve latest tag via redirect (avoids unauthenticated GitHub API rate limits in CI)
+OPENLOGI_TAG=$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/AprilNEA/OpenLogi/releases/latest | sed 's#.*/##')
 
-curl -Lo /tmp/openlogi.rpm "$DOWNLOAD_URL"
+curl -fLo /tmp/openlogi.rpm "https://github.com/AprilNEA/OpenLogi/releases/download/${OPENLOGI_TAG}/openlogi-${OPENLOGI_TAG}-linux-amd64.rpm"
 dnf5 -y --setopt=tsflags=noscripts install /tmp/openlogi.rpm
 rm -f /tmp/openlogi.rpm
