@@ -9,6 +9,9 @@ set -ouex pipefail
 
 dnf5 install -y --refresh --enablerepo=terra vicinae
 
+# Latest uupd from Terra (firmware updates) — base image may lag behind
+dnf5 -y upgrade --enablerepo=terra uupd
+
 # dnf5 -y copr enable ganto/lxc4
 # dnf5 -y install incus
 # dnf5 -y copr disable ganto/lxc4
